@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/LonelyGriffin/Mobugger/issues"
   },
-  "homepage": "https://github.com/LonelyGriffin/Mobugger#readme"
+  "homepage": "https://github.com/LonelyGriffin/Mobugger#readme",
+  "devDependencies": {
+    "webpack": "^1.13.3"
+  }
 }
