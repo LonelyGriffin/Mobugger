@@ -1,0 +1,24 @@
+{
+  "name": "mobugger",
+  "version": "0.0.1",
+  "description": "Mobile debugger for web developers. Suitable if there is no computer at hand.",
+  "main": "/dis/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LonelyGriffin/Mobugger.git"
+  },
+  "keywords": [
+    "web",
+    "debugger",
+    "mobile"
+  ],
+  "author": "LonelyGriffin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LonelyGriffin/Mobugger/issues"
+  },
+  "homepage": "https://github.com/LonelyGriffin/Mobugger#readme"
+}
