@@ -1,21 +1,5 @@
+var toTerm = require('./toTerm.js');
 window.log = function(data){
-  alert(data);
+  term = toTerm(data);
+  term.view();
 };
-
-var utils = require('./utils.js');
-log(utils);
-
-var Term = require('./term.js');
-log(Term);
-
-var ObjTerm = require('./objTerm.js');
-log(ObjTerm);
-
-var term = new Term({
-  data: 5
-});
-
-log(term);
-
-term.view();
-log(1);

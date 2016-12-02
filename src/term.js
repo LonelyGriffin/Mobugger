@@ -5,13 +5,17 @@ var indention = function(depth, symbol){
     }
     return result;
 }
-var Term = function(o){
-    var o = o || {};
-    this.marker = '&nbsp';
+var Term = function(data, depth){
+    this.marker = '&nbsp;&nbsp;';
+    this.$marker = $('<span class="marker">');
     this.prefixData = "";
     this.postfixData = "";
-    this.depth = o.depth || 0;
-    this.data = o.data;
+    this.customPrefix = "";
+    this.customPostfix = "";
+    this.needPreIndention = true;
+    this.needPostIndention = true;
+    this.depth = depth || 0;
+    this.data = data;
 }
 
 Term.prototype = {
@@ -21,14 +25,21 @@ Term.prototype = {
     setPostfix: function(postfix){
 	    this.customPostfix = postfix;
     },
+    setDepth: function(depth){
+      this.depth = depth;
+    },
     view: function($el){
       this.$el = $el || this.$el || $('body');
-      this.$marker = $('<span>' + this.marker + '</span>');
-      this.$el.empty()
-        .append(this.$marker)
-        .append(indention(this.depth * 2, '&nbsp') + this.customPrefix + this.prefix)
-        .append(this.render())
-        .append(this.postfix + this.customPostfix);
+      this.$marker.html(this.marker);
+      this.$el.empty().append(this.$marker);
+      if(this.needPreIndention){
+        this.$el.append("<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
+      }
+      this.$el.append(this.customPrefix + this.prefixData).append(this.render());
+      if(this.needPostIndention){
+        this.$el.append("<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
+      }
+      this.$el.append(this.postfixData + this.customPostfix);
       this.bind();
     },
     unbind: function(){},
@@ -38,4 +49,3 @@ Term.prototype = {
     }
 }
 module.exports = Term;
-

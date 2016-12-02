@@ -1,15 +1,14 @@
 var termConstructors = {
-    'any': require('term.js');
-    'object': require('objTerm.js');
+    'any': require('./term.js'),
+    'object': require('./objTerm.js')
 };
 
-var toTerm = function(data){
+var toTerm = function(data, depth){
     var type = typeof data;
     if(type == 'object'){
-	return termConstructors['object']({data: data});
+	     return new termConstructors['object'](data, depth);
     };
-
-    return termConstructors['any']({data: data});
+    return new termConstructors['any'](data, depth);
 };
 
 module.exports = toTerm;
