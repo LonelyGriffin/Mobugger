@@ -206,18 +206,37 @@
 
 	var termConstructors = {
 	    'any': __webpack_require__(2),
-	    'object': __webpack_require__(1)
+	    'object': __webpack_require__(1),
+	    'array': __webpack_require__(5)
 	};
 	
 	var toTerm = function(data, depth){
-	    var type = typeof data;
-	    if(type == 'object'){
-		     return new termConstructors['object'](data, depth);
+	    var type = $.type(data);
+	    if(termConstructors[type]){
+		     return new termConstructors[type](data, depth);
 	    };
 	    return new termConstructors['any'](data, depth);
 	};
 	
 	module.exports = toTerm;
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var utils = __webpack_require__(3);
+	var ObjTerm = __webpack_require__(1);
+	
+	var ArrTerm = function(data, depth){
+	  ObjTerm.call(this, data, depth);
+	  this.prefixData = "[";
+	  this.postfixData = "]";
+	}
+	
+	utils.inherit(ObjTerm, ArrTerm);
+	
+	module.exports = ArrTerm;
 
 
 /***/ }
