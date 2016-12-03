@@ -1,0 +1,5 @@
+/* TODO избавиться от стилей влияющих на html и body */
+html,body { height: 100%; margin: 0px; padding: 0px; }
+.hide{
+  display: none;
+}

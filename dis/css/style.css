@@ -1,5 +1,8 @@
 /* TODO избавиться от стилей влияющих на html и body */
 html,body { height: 100%; margin: 0px; padding: 0px; }
+.hide{
+  display: none;
+}
 .marker {
   cursor: pointer;
   color: #000044;
@@ -11,9 +14,6 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
   z-index: 10000;
   background: rgba(228, 227, 223, 1);
 }
-.hide{
-  display: none;
-}
 .side-button{
   position: fixed;
   opacity: 0.5;
@@ -24,3 +24,5 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
   background-size: 50px 50px;
   z-index: 10001;
 }
+
+/*# sourceMappingURL=style.css.map*/

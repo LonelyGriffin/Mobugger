@@ -1,3 +1,5 @@
+require("./term.css");
+
 var indention = function(depth, symbol){
     var result = '';
     for(var i = 0; i < depth; i++){

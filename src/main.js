@@ -1,4 +1,6 @@
-var toTerm = require('./toTerm.js');
+require("./base.css");
+
+var toTerm = require('./term');
 window.log = function(data){
   term = toTerm(data);
   term.view(panel.$body);
@@ -6,7 +8,7 @@ window.log = function(data){
 
 ////////////////
 
-var panel = require("./panel.js");
+var panel = require("./panel/panel.js");
 var openButton = require("./openButton.js");
 
 panel.view();

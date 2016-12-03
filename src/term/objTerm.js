@@ -1,5 +1,5 @@
 var Term = require('./term.js');
-var Utils = require('./utils.js');
+var Utils = require('../utils.js');
 
 var ObjTerm = function(data, depth){
     var toTerm = require('./toTerm.js');

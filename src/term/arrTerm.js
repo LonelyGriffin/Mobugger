@@ -1,4 +1,4 @@
-var utils = require("./utils.js");
+var utils = require("../utils.js");
 var ObjTerm = require("./objTerm.js");
 
 var ArrTerm = function(data, depth){

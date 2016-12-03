@@ -1,11 +1,11 @@
-
+require("./panel.css");
 var Panel = function(){
   this.$body = $("<div>");
 };
 
 Panel.prototype = {
   view: function($el){
-    var closeButton = require("./closeButton.js");
+    var closeButton = require("../closeButton.js");
     var $el = $el || $('body');
     closeButton.view();
     closeButton.hide();
@@ -17,15 +17,15 @@ Panel.prototype = {
     return this.$body;
   },
   show: function(){
-    var openButton = require("./openButton.js");
-    var closeButton = require("./closeButton.js");
+    var openButton = require("../openButton.js");
+    var closeButton = require("../closeButton.js");
     openButton.hide();
     closeButton.show();
     this.$body.removeClass("hide");
   },
   hide: function(){
-    var openButton = require("./openButton.js");
-    var closeButton = require("./closeButton.js");
+    var openButton = require("../openButton.js");
+    var closeButton = require("../closeButton.js");
     openButton.show();
     closeButton.hide();
     this.$body.addClass("hide");

@@ -1,4 +1,6 @@
-var utils = require("./utils.js");
+require("./sideButton.css");
+
+var utils = require("../utils.js");
 var Button = require("./button.js")
 var SideButton = function(){
   Button.call(this);
@@ -12,7 +14,7 @@ SideButton.prototype.render = function(){
   this.$body = $("<div>");
   this.$body.css({
     backgroundImage: "url("+ this.image + ")",
-    top: (this.top * 55) + "px"
+    top: (this.top * SIDE_BUTTON_SIZE) + "px"
   });
   this.$body.addClass("side-button");
   return this.$body
