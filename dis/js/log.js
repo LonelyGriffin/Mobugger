@@ -46,12 +46,6 @@
 
 	__webpack_require__(1);
 
-	var toTerm = __webpack_require__(5);
-	window.log = function(data){
-	  term = toTerm(data);
-	  term.view(panel.$body);
-	};
-
 	var $logWrap = $("<div>");
 	$logWrap.addClass("mobugger--not--recursive--flag");
 	$("body").append($logWrap);
@@ -60,8 +54,15 @@
 	var panel = __webpack_require__(14);
 	var openButton = __webpack_require__(22);
 
-	panel.view();
+	panel.view($logWrap);
 	openButton.view();
+
+	var Term = __webpack_require__(5);
+	var termList = new Term.List(panel.$body);
+	window.log = function(data){
+	  termList.push(data);
+	};
+
 
 
 /***/ },
@@ -77,7 +78,19 @@
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(6);
+	var toTerm = __webpack_require__(6);
+	var exprt = function () {
+	    toTerm.apply(null, arguments)
+	};
+
+	exprt.Base = __webpack_require__(8);
+	exprt.Object = __webpack_require__(11);
+	exprt.Array = __webpack_require__(12);
+	exprt.DomElement = __webpack_require__(23);
+	exprt.DomText = __webpack_require__(24);
+	exprt.List = __webpack_require__(26);
+
+	module.exports = exprt;
 
 
 /***/ },
@@ -534,6 +547,31 @@
 	};
 	module.exports = DomTextElementTerm;
 
+
+/***/ },
+/* 25 */,
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by User on 05.12.2016.
+	 */
+	var toTerm = __webpack_require__(6);
+
+	var TermList = function ($el) {
+	    this._terms = [];
+	    this.$el = $el || $('.mobugger--not--recursive--flag');
+	};
+	TermList.prototype = {
+	    push: function (data) {
+	        var term = toTerm(data);
+	        this._terms.push(term);
+	        var $wrap = $("<div>");
+	        term.view($wrap);
+	        this.$el.append($wrap);
+	    }
+	};
+	module.exports = TermList;
 
 /***/ }
 /******/ ]);

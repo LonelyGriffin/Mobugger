@@ -1,11 +1,5 @@
 require("./base.css");
 
-var toTerm = require('./term');
-window.log = function(data){
-  term = toTerm(data);
-  term.view(panel.$body);
-};
-
 var $logWrap = $("<div>");
 $logWrap.addClass("mobugger--not--recursive--flag");
 $("body").append($logWrap);
@@ -14,5 +8,12 @@ $("body").append($logWrap);
 var panel = require("./panel/panel.js");
 var openButton = require("./openButton.js");
 
-panel.view();
+panel.view($logWrap);
 openButton.view();
+
+var Term = require('./term');
+var termList = new Term.List(panel.$body);
+window.log = function(data){
+  termList.push(data);
+};
+
