@@ -196,7 +196,7 @@
 	        }
 	        this.$el.append(wrapPlainText(this.customPrefix + this.prefixData)).append(renderData);
 	        if (this.needPostIndention && renderData) {
-	            this.$el.append("<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
+	            this.$el.append("&nbsp;<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
 	        }
 	        this.$el.append(wrapPlainText(this.postfixData + this.customPostfix));
 	        this.postView();
@@ -503,10 +503,17 @@
 
 	var utils = __webpack_require__(7);
 	var ObjTerm = __webpack_require__(11);
+	var renderAtributes = function ($data) {
+	  var result = "";
+	  $.each($data.attributes, function (i, attr) {
+	    result += " " + attr.name + "='" + attr.value + "'";
+	  });
+	  return result;
+	};
 	var DomElementTerm = function(data, depth){
 	  ObjTerm.call(this, data, depth);
-	  this.$data = $(this.data);
-	  this.prefixData = "<" + this.data.tagName + ">";
+	  this.$data = $(this.data)[0];
+	  this.prefixData = "<" + this.data.tagName + renderAtributes(this.$data) + ">";
 	  this.postfixData = "</" + this.data.tagName + ">";
 	};
 

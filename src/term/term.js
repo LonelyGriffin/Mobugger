@@ -48,7 +48,7 @@ Term.prototype = {
         }
         this.$el.append(wrapPlainText(this.customPrefix + this.prefixData)).append(renderData);
         if (this.needPostIndention && renderData) {
-            this.$el.append("<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
+            this.$el.append("&nbsp;<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
         }
         this.$el.append(wrapPlainText(this.postfixData + this.customPostfix));
         this.postView();
