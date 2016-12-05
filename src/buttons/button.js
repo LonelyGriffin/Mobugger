@@ -7,7 +7,7 @@ Button.prototype = {
     this.$button.attr("value", content + "")
   },
   view: function($el){
-    this.$el = $el || this.$el || $('body');
+    this.$el = $el || this.$el || $('.mobugger--not--recursive--flag');
     this.unbind();
     this.$el.append(this.render());
     this.bind();

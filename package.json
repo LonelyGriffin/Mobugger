@@ -4,7 +4,8 @@
   "description": "Mobile debugger for web developers. Suitable if there is no computer at hand.",
   "main": "/dis/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack"
   },
   "repository": {
     "type": "git",

@@ -2,7 +2,7 @@ var Term = require('./term.js');
 var Utils = require('../utils.js');
 
 var ObjTerm = function(data, depth){
-    var toTerm = require('./toTerm.js');
+
     Term.call(this, data, depth);
     this.marker = '+';
     this.prefixData = "{";
@@ -11,14 +11,19 @@ var ObjTerm = function(data, depth){
     this.expanded = false;
     this._binded = false;
     this._childs = [];
-    for(var key in this.data){
-      var term = toTerm(this.data[key], this.depth + 1);
-      term.setPrefix(key + ': ');
-      this._childs.push(term);
-    }
-}
+    this._processedData();
+};
 
 Utils.inherit(Term, ObjTerm);
+
+ObjTerm.prototype._processedData = function(){
+  var toTerm = require('./toTerm.js');
+  for(var key in this.data){
+    var term = toTerm(this.data[key], this.depth + 1);
+    term.setPrefix(key + ': ');
+    this._childs.push(term);
+  }
+};
 
 ObjTerm.prototype.toggle = function(){
     this.expanded = !this.expanded;
@@ -27,16 +32,16 @@ ObjTerm.prototype.toggle = function(){
     this.view();
 };
 
-ObjTerm.prototype.render = function(){
+ObjTerm.prototype.render = function(data){
     if(this.expanded){
-      return this.fullRender();
+      return this.fullRender(data);
     } else {
       this.unbindChilds();
-      return this.shortRender();
+      return this.shortRender(data);
     }
 };
 
-ObjTerm.prototype.fullRender = function(){
+ObjTerm.prototype.fullRender = function(data){
     var $wrap = $('<div>');
     for(var i = 0; i < this._childs.length; i++){
 	     var $box = $('<div>');
@@ -46,7 +51,7 @@ ObjTerm.prototype.fullRender = function(){
     return $wrap;
 };
 
-ObjTerm.prototype.shortRender = function(){
+ObjTerm.prototype.shortRender = function(data){
     return '...';
 };
 

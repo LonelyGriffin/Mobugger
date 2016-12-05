@@ -6,7 +6,7 @@ var Panel = function(){
 Panel.prototype = {
   view: function($el){
     var closeButton = require("../closeButton.js");
-    var $el = $el || $('body');
+    var $el = $el || $('.mobugger--not--recursive--flag');
     closeButton.view();
     closeButton.hide();
     $el.append(this.render());

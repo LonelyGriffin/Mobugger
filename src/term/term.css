@@ -2,3 +2,6 @@
   cursor: pointer;
   color: #000044;
 }
+.wrap-plain-text{
+  display: inline;
+}

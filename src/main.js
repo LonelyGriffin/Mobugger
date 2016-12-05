@@ -6,6 +6,9 @@ window.log = function(data){
   term.view(panel.$body);
 };
 
+var $logWrap = $("<div>");
+$logWrap.addClass("mobugger--not--recursive--flag");
+$("body").append($logWrap);
 ////////////////
 
 var panel = require("./panel/panel.js");

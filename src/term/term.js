@@ -6,7 +6,12 @@ var indention = function(depth, symbol){
       result = result + symbol;
     }
     return result;
-}
+};
+
+var wrapPlainText = function (text) {
+    return  "<xmp class='wrap-plain-text'>" + text + "</xmp>"
+};
+
 var Term = function(data, depth){
     this.marker = '&nbsp;&nbsp;';
     this.$marker = $('<span class="marker">');
@@ -30,24 +35,38 @@ Term.prototype = {
     setDepth: function(depth){
       this.depth = depth;
     },
-    view: function($el){
-      this.$el = $el || this.$el || $('body');
-      this.$marker.html(this.marker);
-      this.$el.empty().append(this.$marker);
-      if(this.needPreIndention){
-        this.$el.append("<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
-      }
-      this.$el.append(this.customPrefix + this.prefixData).append(this.render());
-      if(this.needPostIndention){
-        this.$el.append("<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
-      }
-      this.$el.append(this.postfixData + this.customPostfix);
-      this.bind();
+    view: function($el) {
+        this.preView();
+        this.$el = $el || this.$el || $('.mobugger--not--recursive--flag');
+        var renderData = this.postRender(this.render(this.preRender(this.data)));
+        if(renderData){
+            this.$marker.html(this.marker);
+        }
+        this.$el.empty().append(this.$marker);
+        if (this.needPreIndention && renderData) {
+            this.$el.append("<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
+        }
+        this.$el.append(wrapPlainText(this.customPrefix + this.prefixData)).append(renderData);
+        if (this.needPostIndention && renderData) {
+            this.$el.append("<span class='indention'>" + indention(this.depth * 4, '&nbsp;') + "</span>");
+        }
+        this.$el.append(wrapPlainText(this.postfixData + this.customPostfix));
+        this.postView();
+        this.bind();
+
     },
     unbind: function(){},
     bind: function(){},
-    render: function(){
-	    return this.data + "";
-    }
-}
+    render: function(data){
+	    return wrapPlainText(data + "");
+    },
+    preRender: function (data) {
+        return data;
+    },
+    postRender: function (data) {
+        return data;
+    },
+    preView: function () {},
+    postView: function () {}
+};
 module.exports = Term;
