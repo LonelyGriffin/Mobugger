@@ -1,6 +1,6 @@
 var utils = require("../utils.js");
 var ObjTerm = require("./objTerm");
-var renderAtributes = function ($data) {
+var renderAttributes = function ($data) {
   var result = "";
   $.each($data.attributes, function (i, attr) {
     result += " " + attr.name + "='" + attr.value + "'";
@@ -10,7 +10,7 @@ var renderAtributes = function ($data) {
 var DomElementTerm = function(data, depth){
   ObjTerm.call(this, data, depth);
   this.$data = $(this.data)[0];
-  this.prefixData = "<" + this.data.tagName + renderAtributes(this.$data) + ">";
+  this.prefixData = "<" + this.data.tagName + renderAttributes(this.$data) + ">";
   this.postfixData = "</" + this.data.tagName + ">";
 };
 
